@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>NTSG WONDERLAND</title>
+ <link rel = "icon" href = 
+"ab.jpg" 
+        type = "image/x-icon">
+    <style>
+    h1 {
+        color: #FFFFFF;
+        font-family: system-ui;
+		margin-left: 20px;
+font-size: 70px;
+
+        }
+	body {
+
+  background-image: url('abc.jpg');
+     background-color: #1DDADA;
+        }
+    label {
+          color: #F4FF07;
+font-weight: bold;
+          font-family: system-ui;
+          font-size: 50px;
+          margin-left: 20px;
+          margin-top: 20px;
+          }
+     button {
+            background-color: #EC1747;
+		border-color: black;
+		color: #FFFFFF;
+            font-family: system-ui;
+            font-size: 15px;
+		font-weight: bold;
+            margin-left: 30px;
+		margin-top: 20px;
+		width: 140px;
+        }
+	 input {
+        color: #222629;
+        font-family: system-ui;
+        font-size: 20px;
+        margin-left: 10px;
+		margin-top: 20px;
+		width: 100px;
+        }
+    </style>
+    <script>
+        // callAPI function that takes the base and exponent numbers as parameters
+        var callAPI = (base,exponent,user,password)=>{
+            // instantiate a headers object
+            var myHeaders = new Headers();
+            // add content type header to object
+            myHeaders.append("Content-Type", "application/json");
+            // using built in JSON utility package turn object to string and store in a variable
+            var raw = JSON.stringify(
+            {
+                "base":base,
+                "exponent":exponent,
+                "user":user,
+                "password":password
+                
+            }
+
+            );
+
+            // create a JSON object with parameters for API call and store in a variable
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            // make API call with parameters and use promises to get response
+            fetch("https://x1dfjv300g.execute-api.ap-south-1.amazonaws.com/1st", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+        }
+    </script>
+</head>
+<body>
+<center>
+<h1><center>NTSG WONDERLAND<center></h1>
+    <h1><center>TICKET BOOKING<center></h1>
+	<form>
+        <label>ENTER NAME</label>
+        <input type="text" id="user">
+        <br>
+        <label for="">ENTER PHONE NUMBER</label> 
+      
+        <input type="text" id="password">
+        <br><br><br><br>
+        <label>NUMBER OF ADULTS</label>
+
+        <input type="text" id="base">
+<br>
+        <label>NUMBER OF CHILDREN</label>
+        <input type="text" id="exponent">
+<br>
+        <!-- set button onClick method to call function we defined passing input values as parameters -->
+        <button type="button" onclick="callAPI(document.getElementById('base').value,document.getElementById('exponent').value,document.getElementById('user').value,document.getElementById('password').value)">PRINT TICKET</button>
+    </form>
+<center>
+</body>
+</html>
